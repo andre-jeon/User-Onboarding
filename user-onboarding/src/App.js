@@ -3,26 +3,35 @@ import logo from './logo.svg';
 import './App.css';
 
 import Form from './Form'
+import NewUser from './NewUser'
 
-function App() {
+import axios from 'axios'
+import * as yup from 'yup'
+
+export default function App() {
+
+  const initialFormValues = [
+    {
+      name: '',
+      email: '',
+      password: '',
+      termsOfService: false,
+    }
+  ]
+
+  const [user, setUsers] = useState(initialFormValues)
+  const onChange = (newUser) => {
+    setUsers([...user, newUser])
+  }
+
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Welcome!</h1>
       </header>
+      <Form newUser = {onChange} />
     </div>
   );
 }
-
-export default App;
