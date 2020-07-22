@@ -58,10 +58,21 @@ const Form = (props) => {
                 <input 
                     id='passwordInput'
                     type='text'
-                    placeholder='Type Name Here'
+                    placeholder='Type Password Here'
                     maxLength='30'
-                    name='name'
+                    name='password'
                     value = {formValue.password}
+                    onChange = {onChange}
+                    />
+                </label>
+                <br />
+
+                <label htmlFor='terms-of-service'>Terms of Service
+                <input 
+                    id='terms-of-service'
+                    type='checkbox'
+                    name='terms-of-service'
+                    value = {formValue.termsOfService}
                     onChange = {onChange}
                     />
                 </label>

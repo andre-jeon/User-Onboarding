@@ -27,10 +27,10 @@ export default function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Welcome!</h1>
       </header>
+      <h1>Welcome!</h1> */}
       <Form newUser = {onChange} />
     </div>
   );
