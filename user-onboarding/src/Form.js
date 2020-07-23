@@ -2,31 +2,41 @@ import React, {useState} from 'react'
 
 const Form = (props) => {
 
-    const [formValue, setFormValues] =useState(
-        {
-            name: '',
-            email: '',
-            password: '',
-        })
-
-    const onChange = (e) => {
-        console.log(e.target.name, e.target.value)
-        setFormValues({
-            ...formValue,
-            [e.target.name]: e.target.value
-        })
-    }
+    const {
+        values,
+        submit,
+        inputChange,
+        checkboxChange,
+        disabled,
+        errors,
+      } = props
+    
+      const onSubmit = evt => {
+        evt.preventDefault()
+        submit()
+      }
+    
+      const onCheckboxChange = evt => {
+        const { name, checked } = evt.target
+        checkboxChange(name, checked)
+      }
+    
+      const onInputChange = evt => {
+        const { name, value } = evt.target
+        inputChange(name, value)
+      }
+      
     return(
-        <form classname = 'form-container' onSubmit = {event => {
-            event.preventDefault()
-            props.postNewUsers(formValue)
-            setFormValues({
-                name: '',
-                email: '',
-                password: '',
-            })
-        }}>
+        <form classname = 'form-container' onSubmit = {onSubmit}>
             <h2>Sign-Up</h2>
+
+            <div className='errors'>
+                <div>{errors.name}</div>
+                <div>{errors.email}</div>
+                <div>{errors.password}</div>
+                <div>{errors.termsOfService}</div>
+            </div>
+
             <div className = 'form-inputs'>
                 <label htmlFor='nameInput'>Name:&nbsp;
                 <input 
@@ -35,8 +45,8 @@ const Form = (props) => {
                     placeholder='Type Name Here'
                     maxLength='30'
                     name='name'
-                    value = {formValue.name}
-                    onChange = {onChange}
+                    value = {values.name}
+                    onChange = {onInputChange}
                     />
                 </label>
                 <br />
@@ -48,8 +58,8 @@ const Form = (props) => {
                     placeholder='Type Email Here'
                     maxLength='30'
                     name='email'
-                    value = {formValue.email}
-                    onChange = {onChange}
+                    value = {values.email}
+                    onChange = {onInputChange}
                     />
                 </label>
                 <br />
@@ -61,8 +71,8 @@ const Form = (props) => {
                     placeholder='Type Password Here'
                     maxLength='30'
                     name='password'
-                    value = {formValue.password}
-                    onChange = {onChange}
+                    value = {values.password}
+                    onChange = {onInputChange}
                     />
                 </label>
                 <br />
@@ -72,20 +82,18 @@ const Form = (props) => {
                     id='terms-of-service'
                     type='checkbox'
                     name='terms-of-service'
-                    value = {formValue.termsOfService}
-                    onChange = {onChange}
+                    value = {values.termsOfService === true}
+                    onChange = {onCheckboxChange}
                     />
                 </label>
                 <br />
             </div>
 
             <div className = 'form-submit'>
-                <button>Submit</button>
+            <button disabled={disabled}>submit</button>
             </div>
         </form>
     )
-
-
 }
 
 

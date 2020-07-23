@@ -33,11 +33,6 @@ export default function App() {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
 
-
-  // const onChange = (newUser) => {
-  //   setUsers([...user, newUser])
-  // }
-
   const getUsers = () => {
     axios.get('https://reqres.in/api/users')
     .then(res => {
@@ -125,13 +120,13 @@ export default function App() {
         postNewUsers={postNewUsers}
       />
 
-      {
+      {/* {
         user.map(user => {
           return(
             <NewUser key = {user.id} details = {user} />
           )
         })
-      }
+      } */}
 
     </div>
   );
