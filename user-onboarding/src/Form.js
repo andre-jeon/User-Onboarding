@@ -82,7 +82,7 @@ const Form = (props) => {
                     id='termsOfService'
                     type='checkbox'
                     name='termsOfService'
-                    checked = {values.terms.termsOfService === true}
+                    unchecked = {values.terms.termsOfService === true}
                     onChange = {onCheckboxChange}
                     />
                 </label>
@@ -90,7 +90,7 @@ const Form = (props) => {
             </div>
 
             <div className = 'form-submit'>
-            <button disabled={disabled}>submit</button>
+            <button>submit</button>
             </div>
         </form>
     )
