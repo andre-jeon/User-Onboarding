@@ -10,7 +10,10 @@ const NewUser = (props) => {
     return(
         <div className = 'user-container'>
             <h2>{details.name}</h2>
-            <p>Email: {details.email}</p>
+            <p>{details.email}</p>
+            <p>
+                {details.terms.includes("terms") ? <p>User has NOT agreed to the terms of service!</p> : <p>User has agreed to the terms of service.</p>}
+            </p>
         </div>
     )
 }

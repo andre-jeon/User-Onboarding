@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 
 const Form = (props) => {
 
@@ -26,6 +26,7 @@ const Form = (props) => {
         inputChange(name, value)
       }
       
+      
     return(
         <form classname = 'form-container' onSubmit = {onSubmit}>
             <h2>Sign-Up</h2>
@@ -34,7 +35,6 @@ const Form = (props) => {
                 <div>{errors.name}</div>
                 <div>{errors.email}</div>
                 <div>{errors.password}</div>
-                <div>{errors.termsOfService}</div>
             </div>
 
             <div className = 'form-inputs'>
@@ -67,7 +67,7 @@ const Form = (props) => {
                 <label htmlFor='passwordInput'>Password:&nbsp;
                 <input 
                     id='passwordInput'
-                    type='text'
+                    type='password'
                     placeholder='Type Password Here'
                     maxLength='30'
                     name='password'
@@ -77,12 +77,12 @@ const Form = (props) => {
                 </label>
                 <br />
 
-                <label htmlFor='terms-of-service'>Terms of Service
+                <label htmlFor='termsOfService'>Terms of Service
                 <input 
-                    id='terms-of-service'
+                    id='termsOfService'
                     type='checkbox'
-                    name='terms-of-service'
-                    value = {values.termsOfService === true}
+                    name='termsOfService'
+                    checked = {values.terms.termsOfService === true}
                     onChange = {onCheckboxChange}
                     />
                 </label>
