@@ -11,8 +11,7 @@ const NewUser = (props) => {
         <div className = 'user-container'>
             <h2>{details.name}</h2>
             <p>Email: {details.email}</p>
-            <p>password: {details.password}</p>
         </div>
     )
 }
-export default NewUser; 
+export default NewUser;

@@ -4,7 +4,7 @@ const Form = (props) => {
 
     const [formValue, setFormValues] =useState(
         {
-            naem: '',
+            name: '',
             email: '',
             password: '',
         })
@@ -19,7 +19,7 @@ const Form = (props) => {
     return(
         <form classname = 'form-container' onSubmit = {event => {
             event.preventDefault()
-            props.newUser(formValue)
+            props.postNewUsers(formValue)
             setFormValues({
                 name: '',
                 email: '',
