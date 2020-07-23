@@ -20,8 +20,34 @@ export default function App() {
   ]
 
   const [user, setUsers] = useState(initialFormValues)
+  const [formValues, setFormValues] = useState(initialFormValues)
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  const [disabled, setDisabled] = useState(initialDisabled)
+
+
   const onChange = (newUser) => {
     setUsers([...user, newUser])
+  }
+
+  const getUsers = () => {
+    axios.get('https://reqres.in/api/users')
+    .then(res => {
+      setUsers(res.data)
+    })
+    .catch(err => {
+      debugger
+    })
+  }
+
+  const postNewUsers = newUser => {
+    axios.post('https://reqres.in/api/users', newUser)
+    .then(res => {
+      setUsers([res.data, ...user])
+      setFormValues(initialFormValues)
+    })
+    .catch(err => {
+      debugger
+    })
   }
 
 
