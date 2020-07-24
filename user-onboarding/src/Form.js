@@ -16,15 +16,15 @@ const Form = (props) => {
         submit()
       }
     
-      const onCheckboxChange = evt => {
-        const { name, checked } = evt.target
-        checkboxChange(name, checked)
-      }
+    //   const onCheckboxChange = evt => {
+    //     const { name, checked } = evt.target
+    //     checkboxChange(name, checked)
+    //   }
     
-      const onInputChange = evt => {
-        const { name, value } = evt.target
-        inputChange(name, value)
-      }
+    //   const onInputChange = evt => {
+    //     const { name, value } = evt.target
+    //     inputChange(name, value)
+    //   }
       
       
     return(
@@ -35,6 +35,7 @@ const Form = (props) => {
                 <div>{errors.name}</div>
                 <div>{errors.email}</div>
                 <div>{errors.password}</div>
+                <div>{errors.terms}</div>
             </div>
 
             <div className = 'form-inputs'>
@@ -46,7 +47,7 @@ const Form = (props) => {
                     maxLength='30'
                     name='name'
                     value = {values.name}
-                    onChange = {onInputChange}
+                    onChange = {inputChange}
                     />
                 </label>
                 <br />
@@ -59,7 +60,7 @@ const Form = (props) => {
                     maxLength='30'
                     name='email'
                     value = {values.email}
-                    onChange = {onInputChange}
+                    onChange = {inputChange}
                     />
                 </label>
                 <br />
@@ -72,7 +73,7 @@ const Form = (props) => {
                     maxLength='30'
                     name='password'
                     value = {values.password}
-                    onChange = {onInputChange}
+                    onChange = {inputChange}
                     />
                 </label>
                 <br />
@@ -81,16 +82,16 @@ const Form = (props) => {
                 <input 
                     id='termsOfService'
                     type='checkbox'
-                    name='termsOfService'
-                    unchecked = {values.terms.termsOfService === true}
-                    onChange = {onCheckboxChange}
+                    name='terms'
+                    checked = {values.terms}
+                    onChange = {(e) => checkboxChange(e)}
                     />
                 </label>
                 <br />
             </div>
 
             <div className = 'form-submit'>
-            <button>submit</button>
+            <button id='submitBtn' disabled = {disabled}>submit</button>
             </div>
         </form>
     )

@@ -51,45 +51,63 @@ export default function App() {
     })
   }
 
-  const inputChange = (name, value) => {
+  const inputChange = (e) => {
+    e.persist()
     yup
-      .reach(formSchema, name)
-      .validate(value)
+      .reach(formSchema, e.target.name)
+      .validate(e.target.type === 'checkbox'?e.target.checked : e.target.value)
       .then(valid => {
         setFormErrors({
           ...formErrors, 
-          [name]: '',
+          [e.target.name]: '',
         })
       })
       .catch(err => {
         setFormErrors({
           ...formErrors, 
-          [name]: err.errors[0],
+          [e.target.name]: err.errors[0],
         })
       })
 
       setFormValues({
         ...formValues,
-        [name]: value
+        [e.target.name]: e.target.value
       })
   }
 
-  const checkboxChange = (name, isChecked) => {
+  const checkboxChange = (e) => {
+    e.persist()
+
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.type === 'checkbox'?e.target.checked : e.target.value)
+      .then(valid => {
+        setFormErrors({
+          ...formErrors, 
+          [e.target.name]: '',
+        })
+      })
+      .catch(err => {
+        setFormErrors({
+          ...formErrors, 
+          [e.target.name]: err.errors[0],
+        })
+      })
+      
     setFormValues({
       ...formValues, 
-      termsOfService: {
-        ...formValues.termsOfService,
-        [name]: isChecked,
-      }
+      [e.target.name]: e.target.checked
     })
   }
+
+  console.log(formValues)
 
   const submit = () => {
     const newUser = {
       name: formValues.name.trim(),
       email: formValues.email.trim(),
       password: formValues.password.trim(),
-      terms: Object.keys(formValues.terms).filter(tr => formValues[tr])
+      terms: formValues.terms
     }
 
     postNewUsers(newUser)
